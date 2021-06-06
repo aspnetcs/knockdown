@@ -42,3 +42,8 @@ localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
 
 版权声明：本文出自博客无来处的文章-服务器或者docker容器中文字符乱码解决，转载请附上原文出处链接及本声明。
 来源：https://delpast.com/post/POSTTB_d644b4efcb3b4420abcfd50b728df6f8
+
+
+docker run -it -p 5901:5901 -e LANG=C.UTF-8 wxapplet-v6 /bin/bash
+
+
