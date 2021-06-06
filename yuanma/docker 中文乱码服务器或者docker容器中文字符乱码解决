@@ -1,0 +1,44 @@
+https://delpast.com/post/POSTTB_d644b4efcb3b4420abcfd50b728df6f8
+
+服务器或者docker容器中文字符乱码解决
+
+
+旁观者
+
+1年前
+⋅ 788 阅读
+
+
+
+
+
+Linux系统默认的字符集en_US.utf8，不会安装中文字符集，因此会出现中文乱码的情况
+1.查看当前字符集:
+locale
+查看已安装的字符集
+locale -a
+Centos:
+下载中文语言包
+yum -y install kde-l10n-Chinese && yum -y reinstall glibc-common(centos7)
+yum install glibc-langpack-zh.x86_64(centos8)
+Debian:
+apt-get install locales -y
+dpkg-reconfigure locales
+Ubuntu:
+apt-get install language-pack-zh*
+dpkg-reconfigure locales
+2.查看安装结果：
+localectl list-locales | grep zh
+3.修改命令：
+修改~/.bashrc：
+export LC_ALL=zh_CN.utf8
+export LANG=zh_CN.UTF-8
+修改 /etc/locale.conf：
+LANG="zh_CN.UTF-8"
+docker容器执行：
+localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
+
+
+
+版权声明：本文出自博客无来处的文章-服务器或者docker容器中文字符乱码解决，转载请附上原文出处链接及本声明。
+来源：https://delpast.com/post/POSTTB_d644b4efcb3b4420abcfd50b728df6f8
